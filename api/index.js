@@ -5,7 +5,7 @@ const cors = require('cors');
 
 
 // All Routes Define Here
-const emailRoutes = require('./routes/wishEmail/wishEmailRoute');
+const emailRoutes = require('../routes/wishEmail/wishEmailRoute');
 
 dotenv.config();
 
