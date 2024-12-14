@@ -1,20 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const cors = require('cors'); 
-
-
-// All Routes Define Here
-const emailRoutes = require('../routes/wishEmail/wishEmailRoute');
+const cors = require('cors');
 
 dotenv.config();
 
 const app = express();
-const port = 3001;
 app.use(bodyParser.json());
-app.use(cors()); 
+app.use(cors());
 
 // All Routes Define Here
+const emailRoutes = require('./routes/wishEmail/wishEmailRoute');
 app.use('/api', emailRoutes);
 
 app.get('/', (req, res) => {
@@ -130,12 +126,11 @@ app.get('/', (req, res) => {
                         <p><strong>Required:</strong> to, name, designation, dateOfBirth, dateOfAnniversary.</p>
                         <a href="/api/send-wish-email" class="btn">Try it Out</a>
                     </div>
-                    
                     <!-- Add more API endpoints here as needed -->
                 </div>
             </div>
             <footer>
-                <p>Contact us at: <a href="divyansh20060@gmail.com" style="color: white;">support@kcmtcollege.edu</a></p>
+                <p>Contact us at: <a href="mailto:support@kcmtcollege.edu" style="color: white;">support@kcmtcollege.edu</a></p>
                 <p>&copy; 2024 KCMT College</p>
             </footer>
         </body>
@@ -143,6 +138,5 @@ app.get('/', (req, res) => {
     `);
 });
 
-app.listen(port, () => {
-    console.log(`API at http://localhost:${port}`);
-});
+// Export the app as a serverless function
+module.exports = app; // Export for Vercel
